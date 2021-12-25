@@ -1,0 +1,23 @@
+index:
+    path: /
+    controller: App\Controller\ProjectsymfonyController::index
+    
+article_add:
+    path: /add
+    controller: App\Controller\ProjectsymfonyController::add
+article_show:
+    path: /show/{url}
+    controller: App\Controller\ProjectsymfonyController::show        
+
+article_edit:
+  path: /edit/{id}
+  controller: App\Controller\ProjectsymfonyController::edit
+  requirements:
+    id: '\d+'
+
+Registration:
+  path: /register
+  controller: App\Controller\SecurityController::registration
+    
+    
+   

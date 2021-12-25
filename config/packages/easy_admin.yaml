@@ -1,0 +1,20 @@
+easy_admin:
+    site_name: 'RENOSHOPBEE Admin'
+    entities:
+       
+       Article:
+        class: App\Entity\Article
+       Categorie:
+        class: App\Entity\Categorie
+       User:
+        class: App\Entity\User
+
+        
+        list:
+            item_permission: 'ROLE_SUPER'
+        form:
+            item_permission: 'ROLE_SUPER'
+            fields:
+                - email
+                - { property: 'password', type: 'password', type_options: { required: true } }
+                - { property: 'roles', type: 'choice', type_options: { multiple: true, choices: { 'ROLE_USER': 'ROLE_USER', 'ROLE_ADMIN': 'ROLE_ADMIN' } } }

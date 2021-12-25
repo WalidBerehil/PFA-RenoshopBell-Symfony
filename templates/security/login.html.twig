@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<div class="container">
+	<h1>Connexion </h1>
+	{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
+	<form action="{{path('security_connexion')}}" method="post">
+    <label for="email">Email</label>
+		<input placeholder =" votre email" id="email" requiered name ="_username" type="text" class="form-control form-group">
+		<label for="password">Password</label>
+    <input placeholder =" votre password" id="password" requiered name ="_password" type="password" class="form-control form-group">
+		<button type="submit" class="btn btn-success form-group" >  Connexion</button>
+	</form>
+	<br>
+	<a href="{{path('security_inscription')}}" class="btn btn-success" >  Creer un compte</a>
+</div>
+
+<br> <br>
+
+ <footer class="footer">
+    <div class="top-footer-wrap">
+      <div class="top-footer footer-container">
+        <div class="contact">We’re confident we’ve provided all the best for you. Stay connect with us</div>
+        <div class="icons-social">
+          <a href=""><img class="footer-icon" src="./assets/img/icons8_facebook_f_24px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="./assets/img/icons8_twitter_squared_24px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="./assets/img/icons8_instagram_24px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="./assets/img/icons8_linkedin_2_32px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="./assets/img/icons8_behance_32px.png" alt="" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-footer footer-container">
+      <div class="list-footer">
+        <h5 class="list-footer-title">Information</h5>
+        <ul class="list-footer-li">
+          <li><a href="">Delivery Information</a></li>
+          <li><a href="">Discount</a></li>
+          <li><a href="">Sitemap</a></li>
+          <li><a href="">Privacy Policy</a></li>
+          <li><a href="">My Account</a></li>
+        </ul>
+      </div>
+      <div class="list-footer">
+        <h5 class="list-footer-title">My account</h5>
+        <ul class="list-footer-li">
+          <li><a href="">Sign In</a></li>
+          <li><a href="">View Cart</a></li>
+          <li><a href="">My Wishlist</a></li>
+          <li><a href="">Check out</a></li>
+          <li><a href="">Track My Order</a></li>
+        </ul>
+      </div>
+      <div class="list-footer">
+        <h5 class="list-footer-title">Help</h5>
+        <ul class="list-footer-li">
+          <li><a href="">F.A.Q</a></li>
+          <li><a href="">Shipping</a></li>
+          <li><a href="">Contact Us</a></li>
+          <li><a href="">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="list-footer">
+        <h5 class="list-footer-title">Contact info</h5>
+        <ul class="list-footer-li">
+          <li><a href=""><img class="header-icon" src="./assets/img/icons8_globe_16px_1.png" alt="" /> 1234 Your
+              Address, Country</a></li>
+          <li><a href=""><img class="header-icon" src="./assets/img/icons8_phone_16px.png" alt="" /><a
+                href="callto:+1123456789">+1123 456 789</a></li>
+          <li><a href=""><img class="header-icon" src="./assets/img/icons8_new_post_24px.png" alt="" /><a
+                class="email-footer" href="mailto:mail@domain.com">mail@domain.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-fotter-wrap">
+      <div class="bottom-fotter footer-container">
+        <div class="bottom-fotter-copyright">
+          Copyright 2017 RenoshopBee all right reserved - Design by BeeStudios
+        </div>
+        <div class="footer-payments"><img src="./assets/img/visa.png" alt="" /><img src="./assets/img/paypal.png"
+            alt="" /><img src="./assets/img/amazon.png" alt="" /><img src="./assets/img/maestro.png" alt="" /><img
+            src="./assets/img/card.png" alt="" /></div>
+      </div>
+    </div>
+
+
+  </footer>
+
+
+
+
+{% endblock %}

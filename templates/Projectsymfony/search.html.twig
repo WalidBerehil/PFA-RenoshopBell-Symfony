@@ -1,0 +1,185 @@
+{% extends "base2.html.twig" %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+      
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div class="left-nav">
+
+        <ul class="navigation-page">
+        <li><a href="{{path('home')}}">Home</a></li>
+        <li class="active">Shop</li>
+      </ul>
+          
+          <!-- Filter Price-->
+          <div class="widget-price-filter widget-espace">
+            <h3 class="widget-title">Chercher</h3>
+            <div class="price-filter-input">
+              {# <input class="price-range-field" type="text" />
+              <button class="button-secondary-small-square button-secondary-active"><img class="header-icon"
+                  src="../assets/img/icons8_search_24px.png" alt=""></button> #}
+            <form action="{{ path('chercher')}}" method="get">
+					<input type="text" id="mot" name="mot" value=""><br/><br/>
+
+					{% for categorie in categories %}
+					<input type="radio" name="cats" value="{{categorie.id}}">
+					<label>{{categorie.description}}</label><br>
+					{% endfor %}
+
+					<input class="button-secondary-small-square button-secondary-active" style="background-image: url('../assets/img/icons8_search_24px.png');background-repeat: no-repeat;background-position: center;" type="submit" value="">
+				</form>
+			
+			
+			
+			</div>
+          </div>
+
+        
+        </div>
+      </div>
+      <div class="col-9">
+      <div class="content-center products-list-wrap">
+        <div class="products-filters">
+          <div class="products-result-count">Showing {{articles|length}} results</div>
+        </div>
+      
+        <div class="products-details-list">
+            {% for article in articles %}
+            <div class="products-details-list-item">
+                <div class="product-img-wrap">
+                <div class="best-seller_product-img"><img class="product-img" src="{{article.image}}" height="250" width="700" alt=""/></div>
+                </div>
+                <div class="product-content-wrap">      
+                <div class="products-details-title"><a href="{{ path('detail', {'id' : article.id})}}">{{article.titre}}</a></div>
+                <div class="products-details-price">{{article.price}} DH</div>
+                
+                <div class="products-details-stars">
+                    {% if article.reviews == 1 %}
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                {% endif %}
+                {% if article.reviews == 2 %}
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                {% endif %}
+                {% if article.reviews == 3 %}
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                {% endif %}
+                {% if article.reviews == 4 %}
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                {% endif %}
+                {% if article.reviews == 5 %}
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                <img class="header-icon" src="../assets/img/icons8_star_filled_48px.png" alt="">
+                {% endif %}
+                </div>
+                
+                
+                
+                <p class="products-details-text">{{article.description}}</p>
+                <span class="products-details-tag">Exist dans stock ! ({{article.quantite}} restantes)</span>
+                <div class="products-details-add">
+                    <a href="{{ path('panier_add', {'id' : article.id})}}"><button class="button-primary button-large button-primary-active"><img class="header-icon" src="./assets/img/icons8_shopping_cart_24px.png" alt=""/>Add to cart</button></a>
+                    <button class="button-secondary-square"><img class="header-icon" src="./assets/img/icons8_heart_32px.png" alt=""></button>
+                    <button class="button-secondary-square"><img class="header-icon" src="./assets/img/icons8_compare_32px.png" alt=""></button>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    
+    </div>
+        
+    </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<footer class="footer">
+    <div class="top-footer-wrap">
+      <div class="top-footer footer-container">
+        <div class="contact">We’re confident we’ve provided all the best for you. Stay connect with us</div>
+        <div class="icons-social">
+          <a href=""><img class="footer-icon" src="../assets/img/icons8_facebook_f_24px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="../assets/img/icons8_twitter_squared_24px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="../assets/img/icons8_instagram_24px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="../assets/img/icons8_linkedin_2_32px.png" alt="" /></a>
+          <a href=""><img class="footer-icon" src="../assets/img/icons8_behance_32px.png" alt="" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-footer footer-container">
+      <div class="list-footer">
+        <h5 class="list-footer-title">Information</h5>
+        <ul class="list-footer-li">
+          <li><a href="">Delivery Information</a></li>
+          <li><a href="">Discount</a></li>
+          <li><a href="">Sitemap</a></li>
+          <li><a href="">Privacy Policy</a></li>
+          <li><a href="">My Account</a></li>
+        </ul>
+      </div>
+      <div class="list-footer">
+        <h5 class="list-footer-title">My account</h5>
+        <ul class="list-footer-li">
+          <li><a href="">Sign In</a></li>
+          <li><a href="">View Cart</a></li>
+          <li><a href="">My Wishlist</a></li>
+          <li><a href="">Check out</a></li>
+          <li><a href="">Track My Order</a></li>
+        </ul>
+      </div>
+      <div class="list-footer">
+        <h5 class="list-footer-title">Help</h5>
+        <ul class="list-footer-li">
+          <li><a href="">F.A.Q</a></li>
+          <li><a href="">Shipping</a></li>
+          <li><a href="">Contact Us</a></li>
+          <li><a href="">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="list-footer">
+        <h5 class="list-footer-title">Contact info</h5>
+        <ul class="list-footer-li">
+          <li><a href=""><img class="header-icon" src="../assets/img/icons8_globe_16px_1.png" alt="" /> 1234 Your
+              Address, Country</a></li>
+          <li><a href=""><img class="header-icon" src="../assets/img/icons8_phone_16px.png" alt="" /><a
+                href="callto:+1123456789">+1123 456 789</a></li>
+          <li><a href=""><img class="header-icon" src="../assets/img/icons8_new_post_24px.png" alt="" /><a
+                class="email-footer" href="mailto:mail@domain.com">mail@domain.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-fotter-wrap">
+      <div class="bottom-fotter footer-container">
+        <div class="bottom-fotter-copyright">
+          Copyright 2017 RenoshopBee all right reserved - Design by BeeStudios
+        </div>
+        <div class="footer-payments"><img src="./assets/img/visa.png" alt="" /><img src="../assets/img/paypal.png"
+            alt="" /><img src="./assets/img/amazon.png" alt="" /><img src="../assets/img/maestro.png" alt="" /><img
+            src="../assets/img/card.png" alt="" /></div>
+      </div>
+    </div>
+
+
+  </footer>
+
+  {% endblock %}

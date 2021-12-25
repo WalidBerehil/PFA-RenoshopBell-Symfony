@@ -1,0 +1,197 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CartController!
+{% endblock %}
+{% block content %}
+{% block body %}
+    {# <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+ {% if items | length > 0 %}
+        <table class='table'>
+            <thead>
+                <tr>
+                    <th>Produit</th>
+                    <th>Prix</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <td>{{ item.article.titre }}</td>
+                     <td>{{ item.article.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.article.price * item.quantity }}</td>
+                     <td>
+                        <a href="{{ path('panier_remove', {'id' : item.article.id})}}" class="btn btn-danger bt-sm">
+                            <i class="fas fa-trash"></i>
+                     </td>
+                </tr>
+            {% endfor %}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right"> Total : </td>
+                        <td> {{ total }}</td>
+                        <td></td>
+
+                    </tr>
+                  </tfoot>
+            </body>
+        </table>
+  {% else %} 
+    <p>c'est vide !</p>
+     {% endif %} #}
+
+
+
+
+
+<div class="container shop-grid-full-container">
+
+  <div class="row">
+        <div class="col">
+            <ul class="navigation-page">
+                <li><a href="{{path('home')}}">Home</a></li>
+                <li><a href="{{ path('cat', {'id' : 0})}}">Shop</a></li>
+                <li class="active">Panier</li>
+            </ul>
+            <div class="cart-wrap">
+                <form action="" method="">
+                  <div class="cart-section">
+                    <table class="cart-list">
+                      <thead>
+                        <tr>
+                          <th class="remove-border" role="columnheader"></th>
+                          <th class="products-border" role="columnheader">Products</th>
+                          <th role="columnheader">Quantity</th>
+                          <th role="columnheader">Price</th>
+                          <th class="remove-border" role="columnheader">Total</th>
+                          <th role="columnheader"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      
+                        {% for item in items %}
+                        <tr>
+                          <td class="remove-border" data-lable="img"><img class="cart-img" src="{{item.article.image}}" width="80" height="100" alt=""/></td>
+                          <td data-lable="name"><a href="{{ path('detail', {'id' : item.article.id})}}">{{ item.article.titre }}</a></td>
+                          
+                          <td data-lable="price">
+                            <span>{{item.quantity}}</span>
+                          </td>
+                          <td><span>{{item.article.price}} DH</span></td>
+                          <td class="remove-border" data-lable="total"><span>{{ item.article.price * item.quantity }} DH</span></td>
+                          <td data-lable="remove"><a href="{{ path('panier_remove', {'id' : item.article.id})}}"><img class="header-icon" src="./assets/img/icons8_cancel_32px.png" alt=""/></a></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tfoot>
+                          <tr>
+                            <td class="table-tfoot" colspan="7">
+                              <a href="{{ path('cat', {'id' : 0})}}" class="button-secondary">Continue shopping</a>
+                            {% if items | length > 0 %}
+                                {% if not app.user%} 
+                                <a href="{{path('security_connexion')}}" class="button-primary">Proceed to checkout ({{total}}DH)</a>
+                                {% else %} 
+                                <a href="{{ path('home')}}" class="button-primary">Proceed to checkout ({{total}}DH)</a>
+                                {% endif %}
+                            {% endif %}
+                            </td>
+                          </tr>
+                        </tfoot>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                </form>
+              </div>
+          </div>
+      </div>
+</div>
+
+
+
+
+  <br><br><br>
+
+
+
+    <footer class="footer">
+      <div class="top-footer-wrap">
+        <div class="top-footer footer-container">
+          <div class="contact">We’re confident we’ve provided all the best for you. Stay connect with us</div>
+          <div class="icons-social">
+            <a href=""><img class="footer-icon" src="./assets/img/icons8_facebook_f_24px.png" alt=""/></a>
+            <a href=""><img class="footer-icon" src="./assets/img/icons8_twitter_squared_24px.png" alt=""/></a>
+            <a href=""><img class="footer-icon" src="./assets/img/icons8_instagram_24px.png" alt=""/></a>
+            <a href=""><img class="footer-icon" src="./assets/img/icons8_linkedin_2_32px.png" alt=""/></a>
+            <a href=""><img class="footer-icon" src="./assets/img/icons8_behance_32px.png" alt=""/></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="center-footer footer-container">
+        <div class="list-footer">
+          <h5 class="list-footer-title">Information</h5>
+          <ul class="list-footer-li">
+            <li><a href="">Delivery Information</a></li>
+            <li><a href="">Discount</a></li>
+            <li><a href="">Sitemap</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">My Account</a></li>
+          </ul>
+        </div>
+        <div class="list-footer">
+          <h5 class="list-footer-title">My account</h5>
+          <ul class="list-footer-li">
+            <li><a href="">Sign In</a></li>
+            <li><a href="">View Cart</a></li>
+            <li><a href="">My Wishlist</a></li>
+            <li><a href="">Check out</a></li>
+            <li><a href="">Track My Order</a></li>
+          </ul>
+        </div>
+        <div class="list-footer">
+          <h5 class="list-footer-title">Help</h5>
+          <ul class="list-footer-li">
+            <li><a href="">F.A.Q</a></li>
+            <li><a href="">Shipping</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="list-footer">
+          <h5 class="list-footer-title">Contact info</h5>
+          <ul class="list-footer-li">
+            <li><a href=""><img class="header-icon" src="./assets/img/icons8_globe_16px_1.png" alt=""/> 1234 Your Address, Country</a></li>
+            <li><a href=""><img class="header-icon" src="./assets/img/icons8_phone_16px.png" alt=""/><a href="callto:+1123456789">+1123 456 789</a></li>
+            <li><a href=""><img class="header-icon" src="./assets/img/icons8_new_post_24px.png" alt=""/><a class="email-footer" href="mailto:mail@domain.com">mail@domain.com</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bottom-fotter-wrap">
+        <div class="bottom-fotter footer-container">
+          <div class="bottom-fotter-copyright">
+            Copyright 2017 RenoshopBee all right reserved - Design by BeeStudios
+          </div>
+          <div class="footer-payments"><img src="./assets/img/visa.png" alt=""/><img src="./assets/img/paypal.png" alt=""/><img src="./assets/img/amazon.png" alt=""/><img src="./assets/img/maestro.png" alt=""/><img src="./assets/img/card.png" alt=""/></div>
+        </div>
+      </div>
+
+   
+    </footer>
+
+
+
+
+
+
+
+{% endblock %}
+{% endblock %}
